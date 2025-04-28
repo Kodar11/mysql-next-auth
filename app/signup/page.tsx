@@ -31,7 +31,7 @@ const SignupPage = () => {
       });
 
       if (res.status === 201) {
-        router.push("/api/auth/login"); // Redirect to login page after successful signup
+        router.push("/login"); // Redirect to login page after successful signup
       } else {
         setError(res.data.error || "Something went wrong");
       }
@@ -112,7 +112,7 @@ const SignupPage = () => {
           <button
             type="button"
             className="text-blue-500 underline"
-            onClick={() => router.push("/api/auth/login")}
+            onClick={() => router.push("/login")}
           >
             Sign In
           </button>

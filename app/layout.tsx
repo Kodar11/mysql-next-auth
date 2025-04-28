@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { getServerSession } from "next-auth";
-import { NEXT_AUTH_CONFIG } from "@/lib/auth";
-import { redirect } from "next/navigation";
+// import { getServerSession } from "next-auth";
+// import { NEXT_AUTH_CONFIG } from "@/lib/auth";
+// import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,11 +25,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(NEXT_AUTH_CONFIG);
+  // const session = await getServerSession(NEXT_AUTH_CONFIG);
 
-  if (!session) {
-    redirect("/login");
-  }
+  // if (!session) {
+  //   redirect("/signup");
+  // }
 
   return (
     <html lang="en">
