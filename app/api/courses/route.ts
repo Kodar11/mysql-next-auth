@@ -29,3 +29,21 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
+
+export async function GET() {
+    try {
+        const session = await getServerSession(NEXT_AUTH_CONFIG);
+        //@ts-ignore
+        if (!session || session?.user?.role !== "teacher") {
+            return NextResponse.json({ error: "Unauthorized. Only teachers can add courses." }, { status: 403 });
+        }
+
+        const db = await createConnection();
+        const [rows] = await db.query("SELECT * FROM Courses");
+
+        return NextResponse.json({ data: rows }, { status: 200 });
+    } catch (error: any) {
+        console.error("Error fetching courses:", error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
